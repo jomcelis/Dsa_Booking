@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reservation.ReservationBooking">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <Label layoutX="342.0" layoutY="81.0" text="Book an Appointment" />
+                <ChoiceBox fx:id="DropDownBtn" layoutX="284.0" layoutY="193.0" onDragDetected="#DropDownBtn_Click" prefHeight="26.0" prefWidth="230.0" />
+                <Label layoutX="282.0" layoutY="173.0" text="Reason:" />
+                <Button fx:id="BookBtn" layoutX="319.0" layoutY="287.0" mnemonicParsing="false" onAction="#BookBtn_Click" prefHeight="26.0" prefWidth="167.0" text="Book now!" />
+                <Button fx:id="backBtn" layoutX="379.0" layoutY="530.0" mnemonicParsing="false" text="Back" />
+                <TextField fx:id="inputName" layoutX="287.0" layoutY="112.0" onAction="#inputNameAction" prefHeight="26.0" prefWidth="110.0" promptText="Name" />
+                <TextField fx:id="inputLastName" layoutX="403.0" layoutY="112.0" onAction="#inputLastNameAction" prefHeight="26.0" prefWidth="110.0" promptText="Last Name" />
+                <TextField fx:id="inputAge" layoutX="286.0" layoutY="147.0" onAction="#inputAgeAction" prefHeight="26.0" prefWidth="68.0" promptText="Age" />
+                <TextField fx:id="inputNumber" layoutX="362.0" layoutY="147.0" onAction="#inputNumberAction" prefHeight="26.0" prefWidth="151.0" promptText="Contact Number" />
+                <RadioButton fx:id="nineAm" layoutX="288.0" layoutY="228.0" mnemonicParsing="false" onAction="#nineAm_Action" text="9:00 AM" />
+                <RadioButton fx:id="tenAm" layoutX="361.0" layoutY="228.0" mnemonicParsing="false" onAction="#tenAm_Action" text="10:00 AM" />
+                <RadioButton fx:id="elevenAm" layoutX="446.0" layoutY="228.0" mnemonicParsing="false" onAction="#elevenAm_Action" text="11:00 AM" />
+                <RadioButton fx:id="onePM" layoutX="288.0" layoutY="254.0" mnemonicParsing="false" onAction="#onePM_Action" text="1:00 PM" />
+                <RadioButton fx:id="twoPM" layoutX="362.0" layoutY="254.0" mnemonicParsing="false" onAction="#twoPM_Action" text="2:00 PM" />
+                <RadioButton fx:id="threePM" layoutX="446.0" layoutY="254.0" mnemonicParsing="false" onAction="#threePM_Action" text="3:00 PM" />
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
