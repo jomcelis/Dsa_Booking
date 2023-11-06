@@ -9,10 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import javax.swing.JOptionPane;
 
 
@@ -75,9 +72,14 @@ public class ReservationBooking {
     //Action Buttons
 
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
         // Initialize the mainQueue here or obtain it from another source.// Replace this with your actual initialization code.
+        File file = new File(filePath);
 
+        // Check if the file exists, and create it if it doesn't
+        if (!file.exists()) {
+            file.createNewFile();
+        }
         // Add a listener to capture the selected date when a radio button is clicked.
         ToggleGroup dateToggleGroup = new ToggleGroup();
         nineAm.setToggleGroup(dateToggleGroup);
@@ -223,20 +225,36 @@ public class ReservationBooking {
 
     }
 
-    void addData(String name, String lastName, String age, String contactNumber, String date , String reason) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(name + ",");
-            writer.write(lastName + ",");
-            writer.write(contactNumber + ",");
-            writer.write(date + ",");
-            writer.write(reason + "\r\n");
+    void addData(String name, String lastName, String age, String contactNumber, String date, String reason) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String existingDate = parts[3].trim(); // Assuming the date is at index 3
+
+                // Check if the date already exists
+                if (existingDate.equals(date)) {
+                    JOptionPane.showMessageDialog(null, "This timeslot is already booked.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Exit the method if the timeslot is already booked
+                }
+            }
+
+            // Write the new booking to the file if the timeslot is available
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+                writer.write(name + ",");
+                writer.write(lastName + ",");
+                writer.write(contactNumber + ",");
+                writer.write(date + ",");
+                writer.write(reason + "\r\n");
+            }
         } catch (IOException ex) {
             ex.printStackTrace(); // Handle or log the exception properly
         }
     }
 
+
     void createFolder() {
-        File fileDirectory = new File("C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers");
+        File fileDirectory = new File("C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\Clients.txt");
         if (!fileDirectory.exists()) {
             fileDirectory.mkdirs();
         }
