@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reservation.ReservationBooking">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reservation.ReservationBooking" stylesheets="@style.css">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
             <children>
                 <Label layoutX="342.0" layoutY="81.0" text="Book an Appointment" />
                 <ChoiceBox fx:id="DropDownBtn" layoutX="284.0" layoutY="193.0" onDragDetected="#DropDownBtn_Click" prefHeight="26.0" prefWidth="230.0" />

@@ -146,12 +146,44 @@ public class ReservationBooking {
         }
     }
 
+    void addData(String name, String lastName, String age, String contactNumber, String date, String reason) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+
+                // Check if there are enough parts and the date matches
+                if (parts.length > 3 && parts[3].trim().equals(date)) {
+                    JOptionPane.showMessageDialog(null, "This timeslot is already booked.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Exit the method if the timeslot is already booked
+                }
+            }
+
+            // Write the new booking to the file if the timeslot is available
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+                writer.write(name + ",");
+                writer.write(lastName + ",");
+                writer.write(contactNumber + ",");
+                writer.write(date + ",");
+                writer.write(reason + "\r\n");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle or log the exception properly
+        }
+    }
+
 
     private void clearTextFields() {
         inputName.setText("");
         inputLastName.setText("");
         inputAge.setText("");
         inputNumber.setText("");
+    }
+    void createFolder() {
+        File fileDirectory = new File("C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\Clients.txt");
+        if (!fileDirectory.exists()) {
+            fileDirectory.mkdirs();
+        }
     }
 
     private boolean containsSpecialCharacters(String text) {
@@ -225,40 +257,7 @@ public class ReservationBooking {
 
     }
 
-    void addData(String name, String lastName, String age, String contactNumber, String date, String reason) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                String existingDate = parts[3].trim(); // Assuming the date is at index 3
 
-                // Check if the date already exists
-                if (existingDate.equals(date)) {
-                    JOptionPane.showMessageDialog(null, "This timeslot is already booked.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return; // Exit the method if the timeslot is already booked
-                }
-            }
-
-            // Write the new booking to the file if the timeslot is available
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-                writer.write(name + ",");
-                writer.write(lastName + ",");
-                writer.write(contactNumber + ",");
-                writer.write(date + ",");
-                writer.write(reason + "\r\n");
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace(); // Handle or log the exception properly
-        }
-    }
-
-
-    void createFolder() {
-        File fileDirectory = new File("C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\Clients.txt");
-        if (!fileDirectory.exists()) {
-            fileDirectory.mkdirs();
-        }
-    }
 
 
 }
