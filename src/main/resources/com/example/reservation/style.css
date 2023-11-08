@@ -6,3 +6,48 @@
 .backgroundColor{
     -fx-background-color: linear-gradient(to left, #3d57a7, #604ba0);
 }
+* {
+   -fx-darkest-grey-color: #323232;
+}
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-padding: 1px;
+    -fx-border-color:  linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
+    -fx-border-radius: 15px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+        -fx-border-color:  linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
+        -fx-border-radius: 15px;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+        -fx-border-color:  linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
+        -fx-border-radius: 15px;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+        -fx-border-color:  linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
+        -fx-border-radius: 15px;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: #7f7f81;
+    -fx-background-image: null;
+        -fx-border-color:  linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
+        -fx-border-radius: 15px;
+}
+.radio-button .dot {
+    -fx-background-radius: 7px;
+    -fx-padding: 6px;
+}
+
+.transparent-text-area {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+}

@@ -1,12 +1,13 @@
 
 package com.example.reservation;
-
+import javafx.animation.ScaleTransition;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
 import javax.swing.*;
 import java.io.*;
@@ -22,6 +23,11 @@ public class ReservationBooking {
 
 
     public ReservationBooking() {
+        scaleTransition = new ScaleTransition(Duration.millis(100), BookBtn);
+        scaleTransition.setFromX(1.0);
+        scaleTransition.setFromY(1.0);
+        scaleTransition.setToX(1.1);
+        scaleTransition.setToY(1.1);
     }
 
     private final String[] choices ={"General check up","Tooth Extraction","ramen","X-Ray", "Consultation"};
@@ -34,6 +40,8 @@ public class ReservationBooking {
     @FXML
     public ChoiceBox<String> DropDownBtn;
 
+    @FXML
+    public ComboBox<String> ComboBox;
 
     @FXML
     private Button backBtn;
@@ -105,7 +113,7 @@ public class ReservationBooking {
         twoPM.setUserData("2:00 PM");
         threePM.setUserData("3:00 PM");
 
-        DropDownBtn.setItems(FXCollections.observableArrayList(choices));
+        ComboBox.setItems(FXCollections.observableArrayList(choices));
     }
 
 
@@ -120,7 +128,7 @@ public class ReservationBooking {
         String ageText = inputAge.getText();
         String contactNumber = inputNumber.getText();
         String selectedDate = date;
-        String reason = DropDownBtn.getValue();
+        String reason = ComboBox.getValue();
 
         if (name.isEmpty() || lastName.isEmpty() || ageText.isEmpty() || reason == null) {
             JOptionPane.showMessageDialog(null, "Missing/Wrong input", "Error", JOptionPane.ERROR_MESSAGE);
@@ -185,26 +193,26 @@ public class ReservationBooking {
             fileDirectory.mkdirs();
         }
     }
+    @FXML
+    void BookBtn_MouseEntered(MouseEvent event) {
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), BookBtn);
+        scaleTransition.setToX(1.1); // Scale X by 10%
+        scaleTransition.setToY(1.1); // Scale Y by 10%
+        scaleTransition.play();
+    }
+
+
+    @FXML
+    void BookBtn_MouseExited(MouseEvent event) {
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), BookBtn);
+        scaleTransition.setToX(1.0); // Restore X to its original size
+        scaleTransition.setToY(1.0); // Restore Y to its original size
+        scaleTransition.play();
+    }
 
     private boolean containsSpecialCharacters(String text) {
         return !text.matches("^[a-zA-Z0-9 ]*$");
     }
-
-
-
-//    @FXML
-//    void backBtn_Click(ActionEvent event) throws IOException {
-//        Main m = new Main();
-//        m.changeScene("UserHomepage.fxml");
-//    }
-
-
-//    @FXML
-//    private void createReservationBooking() {
-//        // Create an instance of ReservationBooking and pass the MainQueue instance.
-//        ReservationBooking reservationBooking = new ReservationBooking(mainQueue);
-//        // Add it to your UI, e.g., using a layout pane or as needed.
-//    }
 
     @FXML
     void inputAgeAction(ActionEvent event) {
@@ -258,6 +266,5 @@ public class ReservationBooking {
     }
 
 
-
-
+    private ScaleTransition scaleTransition;
 }
