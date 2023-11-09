@@ -30,7 +30,7 @@ public class ReservationBooking {
         scaleTransition.setToY(1.1);
     }
 
-    private final String[] choices ={"General check up","Tooth Extraction","ramen","X-Ray", "Consultation"};
+    private final String[] choices ={"General check up","Tooth Extraction","Teeth whitening","X-Ray", "Consultation", "Braces"};
 
     public String date;
 
@@ -129,7 +129,7 @@ public class ReservationBooking {
         String contactNumber = inputNumber.getText();
         String selectedDate = date;
         String reason = ComboBox.getValue();
-
+addDataToReservations(name,lastName,ageText,contactNumber,reason);
         if (name.isEmpty() || lastName.isEmpty() || ageText.isEmpty() || reason == null) {
             JOptionPane.showMessageDialog(null, "Missing/Wrong input", "Error", JOptionPane.ERROR_MESSAGE);
             clearTextFields();
@@ -153,6 +153,20 @@ public class ReservationBooking {
             }
         }
     }
+
+    void addDataToReservations(String name, String lastName, String contactNumber, String date, String reason) {
+        String reservationFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\Reservations.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(reservationFilePath, true))) {
+            writer.write("Name: " + name + ",");
+            writer.write(" Last Name: " + lastName + ",");
+            writer.write(" Contact Number: " + contactNumber + ",");
+            writer.write(" Date: " + date + ",");
+            writer.write(" Reason: " + reason + System.getProperty("line.separator"));
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle or log the exception properly
+        }
+    }
+
 
     void addData(String name, String lastName, String age, String contactNumber, String date, String reason) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
