@@ -145,6 +145,7 @@ addDataToReservations(name,lastName,ageText,contactNumber,reason);
                     JOptionPane.showMessageDialog(null, "Name and Last Name should not contain special characters.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     createFolder();
+                    checkWalkinsQueue(); // Call the new method here
                     addData(name, lastName, ageText, contactNumber, selectedDate, reason);
                     JOptionPane.showMessageDialog(null, "Successful booking!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -194,6 +195,22 @@ addDataToReservations(name,lastName,ageText,contactNumber,reason);
         }
     }
 
+
+    private void checkWalkinsQueue() {
+        String walkinsFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(walkinsFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Compare the time with the contents of the file
+                if (line.contains(date)) {
+                    JOptionPane.showMessageDialog(null, "Please wait... walk-ins are on the queue.", "Notification", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle or log the exception properly
+        }
+    }
 
     private void clearTextFields() {
         inputName.setText("");
@@ -282,3 +299,4 @@ addDataToReservations(name,lastName,ageText,contactNumber,reason);
 
     private ScaleTransition scaleTransition;
 }
+

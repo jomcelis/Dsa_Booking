@@ -51,3 +51,6 @@
     -fx-background-color: transparent;
     -fx-control-inner-background: transparent;
 }
+.shadows{
+-fx-effect:dropshadow(gaussian, rgba(100, 77, 160, 0.3), 15, 0.1,1, 1.5);
+}
