@@ -21,6 +21,7 @@ public class ReservationBooking {
 
     private static final String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
 
+    private long lastCheckedLines = 0;
 
     public ReservationBooking() {
         scaleTransition = new ScaleTransition(Duration.millis(100), BookBtn);
@@ -83,6 +84,7 @@ public class ReservationBooking {
     private void initialize() throws IOException {
         // Initialize the mainQueue here or obtain it from another source.// Replace this with your actual initialization code.
         File file = new File(filePath);
+        checkWalkinsFile();
 
         // Check if the file exists, and create it if it doesn't
         if (!file.exists()) {
@@ -123,35 +125,39 @@ public class ReservationBooking {
 
     @FXML
     void BookBtn_Click(ActionEvent event) {
+
         String name = inputName.getText();
         String lastName = inputLastName.getText();
         String ageText = inputAge.getText();
         String contactNumber = inputNumber.getText();
         String selectedDate = date;
         String reason = ComboBox.getValue();
-addDataToReservations(name,lastName,ageText,contactNumber,reason);
-        if (name.isEmpty() || lastName.isEmpty() || ageText.isEmpty() || reason == null) {
-            JOptionPane.showMessageDialog(null, "Missing/Wrong input", "Error", JOptionPane.ERROR_MESSAGE);
-            clearTextFields();
-        } else {
-            try {
-                int age = Integer.parseInt(ageText);
-
-                if (age < 0) {
-                    JOptionPane.showMessageDialog(null, "Negative numbers not allowed.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else if (!contactNumber.matches("\\d{11}")) {
-                    JOptionPane.showMessageDialog(null, "Contact number should contain exactly 11 digits.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else if (containsSpecialCharacters(name) || containsSpecialCharacters(lastName)) {
-                    JOptionPane.showMessageDialog(null, "Name and Last Name should not contain special characters.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    createFolder();
-                    checkWalkinsQueue(); // Call the new method here
-                    addData(name, lastName, ageText, contactNumber, selectedDate, reason);
-                    JOptionPane.showMessageDialog(null, "Successful booking!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        if (!isTimeslotBooked(date)) {
+            if (name.isEmpty() || lastName.isEmpty() || ageText.isEmpty() || reason == null) {
+                JOptionPane.showMessageDialog(null, "Missing/Wrong input", "Error", JOptionPane.ERROR_MESSAGE);
+                clearTextFields();
+            } else {
+                try {
+                    int age = Integer.parseInt(ageText);
+                    if (age < 0) {
+                        JOptionPane.showMessageDialog(null, "Negative numbers not allowed.", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else if (!contactNumber.matches("\\d{11}")) {
+                        JOptionPane.showMessageDialog(null, "Contact number should contain exactly 11 digits.", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else if (containsSpecialCharacters(name) || containsSpecialCharacters(lastName)) {
+                        JOptionPane.showMessageDialog(null, "Name and Last Name should not contain special characters.", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else{
+                        createFolder();
+                        checkWalkinsQueue(); // Call the new method here
+                        addData(name, lastName, ageText, contactNumber, selectedDate, reason);
+                        addDataToReservations(name,lastName,ageText,contactNumber,reason);
+                        JOptionPane.showMessageDialog(null, "Successful booking!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (NumberFormatException | IOException e) {
+                    JOptionPane.showMessageDialog(null, "Please enter a numeric value for age.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Please enter a numeric value for age.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            }else{
+            JOptionPane.showMessageDialog(null, "Timeslot is already booked");
         }
     }
 
@@ -170,6 +176,19 @@ addDataToReservations(name,lastName,ageText,contactNumber,reason);
 
 
     void addData(String name, String lastName, String age, String contactNumber, String date, String reason) {
+        // Write the new booking to the file if the timeslot is available
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write(name + ",");
+            writer.write(lastName + ",");
+            writer.write(contactNumber + ",");
+            writer.write(date + ",");
+            writer.write(reason + "\r\n");
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle or log the exception properly
+        }
+    }
+
+    private boolean isTimeslotBooked(String date) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -177,28 +196,34 @@ addDataToReservations(name,lastName,ageText,contactNumber,reason);
 
                 // Check if there are enough parts and the date matches
                 if (parts.length > 3 && parts[3].trim().equals(date)) {
-                    JOptionPane.showMessageDialog(null, "This timeslot is already booked.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return; // Exit the method if the timeslot is already booked
+                    return true; // Timeslot is already booked
                 }
-            }
-
-            // Write the new booking to the file if the timeslot is available
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-                writer.write(name + ",");
-                writer.write(lastName + ",");
-                writer.write(contactNumber + ",");
-                writer.write(date + ",");
-                writer.write(reason + "\r\n");
             }
         } catch (IOException ex) {
             ex.printStackTrace(); // Handle or log the exception properly
         }
+        return false; // Timeslot is available
     }
 
 
-    private void checkWalkinsQueue() {
+    private void checkWalkinsQueue() throws IOException {
         String walkinsFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
-        try (BufferedReader reader = new BufferedReader(new FileReader(walkinsFilePath))) {
+        File walkinsFile = new File(walkinsFilePath);
+
+        // Check if the file exists, and create it if it doesn't
+        if (!walkinsFile.exists()) {
+            try {
+                if (walkinsFile.createNewFile()) {
+                    System.out.println("File created: " + walkinsFile.getAbsolutePath());
+                } else {
+                    System.out.println("File already exists: " + walkinsFile.getAbsolutePath());
+                }
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle or log the exception properly
+            }
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(walkinsFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 // Compare the time with the contents of the file
@@ -209,6 +234,39 @@ addDataToReservations(name,lastName,ageText,contactNumber,reason);
             }
         } catch (IOException ex) {
             ex.printStackTrace(); // Handle or log the exception properly
+        }
+    }
+
+    public void checkForNewBooking() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            long currentLines = reader.lines().count();
+
+            if (currentLines > lastCheckedLines) {
+                JOptionPane.showMessageDialog(null,"Successful Booking");
+            } else {
+                JOptionPane.showMessageDialog(null,"No new bookings found");
+            }
+
+            lastCheckedLines = currentLines;
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle or log the exception properly
+        }
+    }
+    public void checkWalkinsFile(){
+        String walkinsFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
+        File walkinsFile = new File(walkinsFilePath);
+
+        // Check if the file exists, and create it if it doesn't
+        if (!walkinsFile.exists()) {
+            try {
+                if (walkinsFile.createNewFile()) {
+                    System.out.println("File created: " + walkinsFile.getAbsolutePath());
+                } else {
+                    System.out.println("File already exists: " + walkinsFile.getAbsolutePath());
+                }
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle or log the exception properly
+            }
         }
     }
 

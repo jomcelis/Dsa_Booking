@@ -24,16 +24,31 @@
                   <Image url="@Booking%204.png" />
                </image>
             </ImageView>
-                <TextField fx:id="inputName" layoutX="298.0" layoutY="176.0" onAction="#inputNameAction" prefHeight="26.0" prefWidth="99.0" promptText="Name" styleClass="text-area" stylesheets="@style.css" />
-                <TextField fx:id="inputLastName" layoutX="402.0" layoutY="176.0" onAction="#inputLastNameAction" prefHeight="25.0" prefWidth="99.0" promptText="Last Name" styleClass="text-area" stylesheets="@style.css" />
-                <TextField fx:id="inputAge" layoutX="298.0" layoutY="211.0" onAction="#inputAgeAction" prefHeight="25.0" prefWidth="99.0" promptText="Age" styleClass="text-area" />
-                <TextField fx:id="inputNumber" layoutX="402.0" layoutY="211.0" onAction="#inputNumberAction" prefHeight="25.0" prefWidth="99.0" promptText="Contact" styleClass="text-area" stylesheets="@style.css" />
+                <TextField fx:id="inputName" layoutX="298.0" layoutY="176.0" onAction="#inputNameAction" prefHeight="26.0" prefWidth="99.0" promptText="Name" styleClass="text-area" stylesheets="@style.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+                <TextField fx:id="inputLastName" layoutX="402.0" layoutY="176.0" onAction="#inputLastNameAction" prefHeight="25.0" prefWidth="99.0" promptText="Last Name" styleClass="text-area" stylesheets="@style.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+                <TextField fx:id="inputAge" layoutX="298.0" layoutY="211.0" onAction="#inputAgeAction" prefHeight="25.0" prefWidth="99.0" promptText="Age" styleClass="text-area">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+                <TextField fx:id="inputNumber" layoutX="402.0" layoutY="211.0" onAction="#inputNumberAction" prefHeight="25.0" prefWidth="99.0" promptText="Contact" styleClass="text-area" stylesheets="@style.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
             <Label layoutX="297.0" layoutY="237.0" text="Reason:" textFill="#7f7f81">
                <font>
                   <Font name="SansSerif Regular" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="ComboBox" layoutX="297.0" layoutY="253.0" prefHeight="26.0" prefWidth="206.0" promptText="Choose" styleClass="text-area" stylesheets="@style.css" />
+            <ComboBox fx:id="ComboBox" layoutX="297.0" layoutY="253.0" prefHeight="26.0" prefWidth="206.0" promptText="Choose" styleClass="text-area" stylesheets="@style.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
                 <Button fx:id="BookBtn" layoutX="331.0" layoutY="343.0" mnemonicParsing="false" onAction="#BookBtn_Click" onMouseEntered="#BookBtn_MouseEntered" onMouseExited="#BookBtn_MouseExited" prefHeight="26.0" prefWidth="138.0" style="-fx-border-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);;" styleClass="text-area" stylesheets="@style.css" text="Book!">
                <font>
                   <Font name="SansSerif Bold" size="12.0" />
@@ -62,31 +77,49 @@
                <font>
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
                 <RadioButton fx:id="tenAm" layoutX="373.0" layoutY="291.0" mnemonicParsing="false" onAction="#tenAm_Action" text="10 AM" textFill="#7f7f81">
                <font>
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
                 <RadioButton fx:id="elevenAm" layoutX="458.0" layoutY="291.0" mnemonicParsing="false" onAction="#elevenAm_Action" styleClass="radio" stylesheets="@style.css" text="11 AM" textFill="#7f7f81">
                <font>
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
                 <RadioButton fx:id="onePM" layoutX="291.0" layoutY="316.0" mnemonicParsing="false" onAction="#onePM_Action" text="1 PM" textFill="#7f7f81">
                <font>
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
                 <RadioButton fx:id="twoPM" layoutX="373.0" layoutY="316.0" mnemonicParsing="false" onAction="#twoPM_Action" text="2 PM" textFill="#7f7f81">
                <font>
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
                 <RadioButton fx:id="threePM" layoutX="458.0" layoutY="316.0" mnemonicParsing="false" onAction="#threePM_Action" text="3 PM" textFill="#7f7f81">
                <font>
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
             </children>
         </AnchorPane>
