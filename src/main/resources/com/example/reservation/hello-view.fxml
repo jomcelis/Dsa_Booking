@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +9,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -20,162 +19,75 @@
     <children>
         <AnchorPane prefHeight="600.0" prefWidth="591.0" stylesheets="@style.css">
             <children>
-            <ImageView fitHeight="606.0" fitWidth="800.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="600.0" fitWidth="815.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Gradient%20bg2.jpg" />
+                  <Image url="@Booking%204.png" />
                </image>
             </ImageView>
-            <Pane layoutX="200.0" layoutY="84.0" prefHeight="434.0" prefWidth="399.0" style="-fx-background-radius: 15; -fx-background-color: white;" stylesheets="@style.css">
-               <children>
-                  <AnchorPane prefHeight="434.0" prefWidth="399.0" style="-fx-background-color: white; -fx-background-radius: 15;">
-                     <children>
-                            <Button fx:id="BookBtn" layoutX="102.0" layoutY="252.0" mnemonicParsing="false" onAction="#BookBtn_Click" onMouseEntered="#BookBtn_MouseEntered" onMouseExited="#BookBtn_MouseExited" prefHeight="26.0" prefWidth="193.0" style="-fx-background-color: white; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-border-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0); -fx-border-radius: 15;" text="Book now!">
-                           <font>
-                              <Font name="SansSerif Bold" size="12.0" />
-                           </font>
-                           <textFill>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop>
-                                       <color>
-                                          <Color red="0.23529411852359772" green="0.33725491166114807" blue="0.6509804129600525" />
-                                       </color>
-                                    </Stop>
-                                    <Stop offset="1.0">
-                                       <color>
-                                          <Color red="0.3921568691730499" green="0.3019607961177826" blue="0.6274510025978088" />
-                                       </color>
-                                    </Stop>
-                                 </stops>
-                              </LinearGradient>
-                           </textFill>
-                        </Button>
-                            <Label layoutX="74.0" layoutY="34.0" text="Book an Appointment!">
-                           <font>
-                              <Font name="Arial Bold" size="24.0" />
-                           </font>
-                           <textFill>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop>
-                                       <color>
-                                          <Color red="0.23529411852359772" green="0.33725491166114807" blue="0.6509804129600525" />
-                                       </color>
-                                    </Stop>
-                                    <Stop offset="0.006729475100942127">
-                                       <color>
-                                          <Color red="0.23529411852359772" green="0.33725491166114807" blue="0.6509804129600525" />
-                                       </color>
-                                    </Stop>
-                                    <Stop offset="1.0">
-                                       <color>
-                                          <Color red="0.3921568691730499" green="0.3019607961177826" blue="0.6274510025978088" />
-                                       </color>
-                                    </Stop>
-                                 </stops>
-                              </LinearGradient>
-                           </textFill>
-                        </Label>
-                            <RadioButton fx:id="nineAm" layoutX="89.0" layoutY="198.0" mnemonicParsing="false" onAction="#nineAm_Action" style="-fx-background-radius: 2;" stylesheets="@style.css" text="9:00 AM" textFill="#7f7f81">
-                           <font>
-                              <Font name="SansSerif Bold" size="12.0" />
-                           </font>
-                        </RadioButton>
-                            <RadioButton fx:id="tenAm" layoutX="166.0" layoutY="198.0" mnemonicParsing="false" onAction="#tenAm_Action" text="10:00 AM" textFill="#7f7f81">
-                           <font>
-                              <Font name="SansSerif Bold" size="12.0" />
-                           </font>
-                        </RadioButton>
-                            <RadioButton fx:id="elevenAm" layoutX="243.0" layoutY="198.0" mnemonicParsing="false" onAction="#elevenAm_Action" text="11:00 AM" textFill="#7f7f81">
-                           <font>
-                              <Font name="SansSerif Bold" size="12.0" />
-                           </font>
-                        </RadioButton>
-                            <RadioButton fx:id="onePM" layoutX="89.0" layoutY="224.0" mnemonicParsing="false" onAction="#onePM_Action" text="1:00 PM" textFill="#7f7f81">
-                           <font>
-                              <Font name="SansSerif Bold" size="12.0" />
-                           </font>
-                        </RadioButton>
-                            <RadioButton fx:id="twoPM" layoutX="166.0" layoutY="224.0" mnemonicParsing="false" onAction="#twoPM_Action" text="2:00 PM" textFill="#7f7f81">
-                           <font>
-                              <Font name="SansSerif Bold" size="12.0" />
-                           </font>
-                        </RadioButton>
-                            <RadioButton fx:id="threePM" layoutX="243.0" layoutY="224.0" mnemonicParsing="false" onAction="#threePM_Action" text="3:00 PM" textFill="#7f7f81">
-                           <font>
-                              <Font name="SansSerif Bold" size="12.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                  </AnchorPane>
-                      <TextField fx:id="inputName" layoutX="88.0" layoutY="80.0" onAction="#inputNameAction" prefHeight="26.0" prefWidth="110.0" promptText="Name" style="-fx-background-color: white; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-border-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0); -fx-border-radius: 15;" />
-                      <TextField fx:id="inputLastName" layoutX="204.0" layoutY="80.0" onAction="#inputLastNameAction" prefHeight="26.0" prefWidth="110.0" promptText="Last Name" style="-fx-background-color: white; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-border-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0); -fx-border-radius: 15;" />
-                      <TextField fx:id="inputAge" layoutX="87.0" layoutY="115.0" onAction="#inputAgeAction" prefHeight="26.0" prefWidth="68.0" promptText="Age" style="-fx-background-color: white; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);" />
-                      <TextField fx:id="inputNumber" layoutX="159.0" layoutY="115.0" onAction="#inputNumberAction" prefHeight="26.0" prefWidth="155.0" promptText="Contact Number" style="-fx-background-color: white; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-border-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0); -fx-border-radius: 15;" />
-                  <Label layoutX="117.0" layoutY="311.0" text="Quiñonez-Celis">
-                     <font>
-                        <Font name="SansSerif Bold" size="24.0" />
-                     </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.23529411852359772" green="0.33725491166114807" blue="0.6509804129600525" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.006729475100942127">
-                                 <color>
-                                    <Color red="0.23529411852359772" green="0.33725491166114807" blue="0.6509804129600525" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.3921568691730499" green="0.3019607961177826" blue="0.6274510025978088" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                  </Label>
-                  <Label layoutX="132.0" layoutY="338.0" text="Dental Clinic">
-                     <font>
-                        <Font name="SansSerif Bold" size="24.0" />
-                     </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.23529411852359772" green="0.33725491166114807" blue="0.6509804129600525" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.006729475100942127">
-                                 <color>
-                                    <Color red="0.23529411852359772" green="0.33725491166114807" blue="0.6509804129600525" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.3921568691730499" green="0.3019607961177826" blue="0.6274510025978088" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                  </Label>
-                  <Label layoutX="89.0" layoutY="146.0" text="Reason:" textFill="#7f7f81">
-                     <font>
-                        <Font name="SansSerif Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="ComboBox" layoutX="86.0" layoutY="161.0" prefHeight="27.0" prefWidth="229.0" promptText="Choose" style="-fx-background-color: white; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);" />
-               </children>
-               <styleClass>
-                  <String fx:value="shadows" />
-                  <String fx:value="shadows" />
-               </styleClass>
-            </Pane>
+                <TextField fx:id="inputName" layoutX="298.0" layoutY="176.0" onAction="#inputNameAction" prefHeight="26.0" prefWidth="99.0" promptText="Name" styleClass="text-area" stylesheets="@style.css" />
+                <TextField fx:id="inputLastName" layoutX="402.0" layoutY="176.0" onAction="#inputLastNameAction" prefHeight="25.0" prefWidth="99.0" promptText="Last Name" styleClass="text-area" stylesheets="@style.css" />
+                <TextField fx:id="inputAge" layoutX="298.0" layoutY="211.0" onAction="#inputAgeAction" prefHeight="25.0" prefWidth="99.0" promptText="Age" styleClass="text-area" />
+                <TextField fx:id="inputNumber" layoutX="402.0" layoutY="211.0" onAction="#inputNumberAction" prefHeight="25.0" prefWidth="99.0" promptText="Contact" styleClass="text-area" stylesheets="@style.css" />
+            <Label layoutX="297.0" layoutY="237.0" text="Reason:" textFill="#7f7f81">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="ComboBox" layoutX="297.0" layoutY="253.0" prefHeight="26.0" prefWidth="206.0" promptText="Choose" styleClass="text-area" stylesheets="@style.css" />
+                <Button fx:id="BookBtn" layoutX="331.0" layoutY="343.0" mnemonicParsing="false" onAction="#BookBtn_Click" onMouseEntered="#BookBtn_MouseEntered" onMouseExited="#BookBtn_MouseExited" prefHeight="26.0" prefWidth="138.0" style="-fx-border-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);;" styleClass="text-area" stylesheets="@style.css" text="Book!">
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.23529411852359772" green="0.33725491166114807" blue="0.6509804129600525" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.3921568691730499" green="0.3019607961177826" blue="0.6274510025978088" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+                <RadioButton fx:id="nineAm" layoutX="291.0" layoutY="291.0" mnemonicParsing="false" onAction="#nineAm_Action" style="-fx-background-radius: 2;" stylesheets="@style.css" text="9 AM" textFill="#7f7f81">
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </RadioButton>
+                <RadioButton fx:id="tenAm" layoutX="373.0" layoutY="291.0" mnemonicParsing="false" onAction="#tenAm_Action" text="10 AM" textFill="#7f7f81">
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </RadioButton>
+                <RadioButton fx:id="elevenAm" layoutX="458.0" layoutY="291.0" mnemonicParsing="false" onAction="#elevenAm_Action" styleClass="radio" stylesheets="@style.css" text="11 AM" textFill="#7f7f81">
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </RadioButton>
+                <RadioButton fx:id="onePM" layoutX="291.0" layoutY="316.0" mnemonicParsing="false" onAction="#onePM_Action" text="1 PM" textFill="#7f7f81">
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </RadioButton>
+                <RadioButton fx:id="twoPM" layoutX="373.0" layoutY="316.0" mnemonicParsing="false" onAction="#twoPM_Action" text="2 PM" textFill="#7f7f81">
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </RadioButton>
+                <RadioButton fx:id="threePM" layoutX="458.0" layoutY="316.0" mnemonicParsing="false" onAction="#threePM_Action" text="3 PM" textFill="#7f7f81">
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </RadioButton>
             </children>
         </AnchorPane>
     </children>

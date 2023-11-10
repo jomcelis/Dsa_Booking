@@ -12,16 +12,17 @@
 
 .radio-button .radio {
     -fx-border-width: 1px;
-    -fx-background-color: white;
+    -fx-background-color: rgba(255,255,255,0.4);
     -fx-background-image: null;
     -fx-padding: 1px;
-    -fx-border-color:  linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
-    -fx-border-radius: 15px;
+-fx-border-color:  black;
+-fx-border-radius: 15px;
+
 }
 .radio-button .radio:selected {
     -fx-background-color: white;
     -fx-background-image: null;
-        -fx-border-color:  linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
+        -fx-border-color:  black;
         -fx-border-radius: 15px;
 }
 .radio-button -radio:armed {
@@ -50,7 +51,28 @@
 .transparent-text-area {
     -fx-background-color: transparent;
     -fx-control-inner-background: transparent;
-}
+}.text-area {
+     -fx-background-color: rgba(255,255,255,0);
+     -fx-background-radius :10px;
+     -fx-border-radius:  10px;
+     -fx-border-color: black;
+     -fx-background-insets: 0, 0 0 1 0;
+     -fx-padding:0 10px;
+
+ }
+
+ .text-area .scroll-pane {
+     -fx-background-color: transparent;
+ }
+
+ .text-area .scroll-pane .viewport{
+     -fx-background-color: transparent;
+ }
+
+
+ .text-area .scroll-pane .content{
+     -fx-background-color: transparent;
+ }
 .shadows{
 -fx-effect:dropshadow(gaussian, rgba(100, 77, 160, 0.3), 15, 0.1,1, 1.5);
 }
