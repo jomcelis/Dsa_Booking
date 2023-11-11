@@ -133,41 +133,46 @@ public class ReservationBooking {
         String selectedDate = date;
         String reason = ComboBox.getValue();
         if (!isTimeslotBooked(date)) {
-            if (name.isEmpty() || lastName.isEmpty() || ageText.isEmpty() || reason == null) {
-                JOptionPane.showMessageDialog(null, "Missing/Wrong input", "Error", JOptionPane.ERROR_MESSAGE);
-                clearTextFields();
-            } else {
-                try {
-                    int age = Integer.parseInt(ageText);
-                    if (age < 0) {
-                        JOptionPane.showMessageDialog(null, "Negative numbers not allowed.", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else if (!contactNumber.matches("\\d{11}")) {
-                        JOptionPane.showMessageDialog(null, "Contact number should contain exactly 11 digits.", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else if (containsSpecialCharacters(name) || containsSpecialCharacters(lastName)) {
-                        JOptionPane.showMessageDialog(null, "Name and Last Name should not contain special characters.", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else{
-                        createFolder();
-                        checkWalkinsQueue(); // Call the new method here
-                        addData(name, lastName, ageText, contactNumber, selectedDate, reason);
-                        addDataToReservations(name,lastName,ageText,contactNumber,reason);
-                        JOptionPane.showMessageDialog(null, "Successful booking!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            if(!isWalkins()){
+                if (name.isEmpty() || lastName.isEmpty() || ageText.isEmpty() || reason == null) {
+                    JOptionPane.showMessageDialog(null, "Missing/Wrong input", "Error", JOptionPane.ERROR_MESSAGE);
+                    clearTextFields();
+                } else {
+                    try {
+                        int age = Integer.parseInt(ageText);
+                        if (age < 0) {
+                            JOptionPane.showMessageDialog(null, "Negative numbers not allowed.", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else if (!contactNumber.matches("\\d{11}")) {
+                            JOptionPane.showMessageDialog(null, "Contact number should contain exactly 11 digits.", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else if (containsSpecialCharacters(name) || containsSpecialCharacters(lastName)) {
+                            JOptionPane.showMessageDialog(null, "Name and Last Name should not contain special characters.", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else{
+                            createFolder();
+                            checkWalkinsQueue(); // Call the new method here
+                            addData(name, lastName, ageText, contactNumber, selectedDate, reason);
+                            addDataToReservations(name,lastName,ageText,contactNumber,selectedDate,reason);
+                            JOptionPane.showMessageDialog(null, "Successful booking!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    } catch (NumberFormatException | IOException e) {
+                        JOptionPane.showMessageDialog(null, "Please enter a numeric value for age.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                } catch (NumberFormatException | IOException e) {
-                    JOptionPane.showMessageDialog(null, "Please enter a numeric value for age.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }
             }else{
+                JOptionPane.showMessageDialog(null, "There are still people in queue please wait...");
+            }
+        }else{
             JOptionPane.showMessageDialog(null, "Timeslot is already booked");
         }
     }
 
-    void addDataToReservations(String name, String lastName, String contactNumber, String date, String reason) {
+    void addDataToReservations(String name, String lastName, String age ,String contactNumber, String date, String reason) {
         String reservationFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\Reservations.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(reservationFilePath, true))) {
             writer.write("Name: " + name + ",");
             writer.write(" Last Name: " + lastName + ",");
+            writer.write(" Age: " + age + ",");
             writer.write(" Contact Number: " + contactNumber + ",");
-            writer.write(" Date: " + date + ",");
+            writer.write(" Time: " + date + ",");
             writer.write(" Reason: " + reason + System.getProperty("line.separator"));
         } catch (IOException ex) {
             ex.printStackTrace(); // Handle or log the exception properly
@@ -205,7 +210,6 @@ public class ReservationBooking {
         return false; // Timeslot is available
     }
 
-
     private void checkWalkinsQueue() throws IOException {
         String walkinsFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
         File walkinsFile = new File(walkinsFilePath);
@@ -223,18 +227,23 @@ public class ReservationBooking {
             }
         }
 
+    }
+
+    private boolean isWalkins(){
+        String walkinsFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
+        File walkinsFile = new File(walkinsFilePath);
         try (BufferedReader reader = new BufferedReader(new FileReader(walkinsFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 // Compare the time with the contents of the file
                 if (line.contains(date)) {
-                    JOptionPane.showMessageDialog(null, "Please wait... walk-ins are on the queue.", "Notification", JOptionPane.INFORMATION_MESSAGE);
-                    return;
+                    return true;
                 }
             }
         } catch (IOException ex) {
             ex.printStackTrace(); // Handle or log the exception properly
         }
+        return false;
     }
 
     public void checkForNewBooking() {
